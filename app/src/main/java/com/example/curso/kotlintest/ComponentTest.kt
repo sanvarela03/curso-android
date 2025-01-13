@@ -42,6 +42,11 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.traceEventEnd
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +57,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.curso.ui.viewmodels.ContadorViewModel
 
 @Composable
 fun ColumnTest1() {
@@ -125,12 +132,8 @@ fun RowTest() {
 }
 
 
-
-
-
-
 @Composable
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 fun LazyColumnTest() {
     val listItems = listOf("A", "B", "C", "D")
     LazyColumn(
@@ -143,15 +146,6 @@ fun LazyColumnTest() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 @Composable
@@ -550,7 +544,63 @@ fun TextFieldTest() {
 }
 
 
+@Composable
+@Preview(showBackground = true)
+fun DirectRecomposition() {
+    var contador by rememberSaveable { mutableStateOf(1) }
 
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("$contador")
+        Button(onClick = { contador++ }) {
+            Text("Incrementar")
+        }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun ContadorTest() { // Aloja el estado
+    var contador by rememberSaveable { mutableStateOf(0) }
+    Contador(contador = contador, onIncrement = { contador++ })
+}
+
+@Composable
+fun Contador(contador: Int, onIncrement: () -> Unit) { //Recibe el estado (stateless)
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("$contador")
+        Button(onClick = { onIncrement() }) {
+            Text("Incrementar")
+        }
+    }
+}
+
+@Composable
+fun Contador(viewModel: ContadorViewModel = viewModel()) {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("${viewModel.contador}")
+        Button(onClick = { viewModel.onIncrement() }) {
+            Text("Incrementar")
+        }
+    }
+}
 
 
 

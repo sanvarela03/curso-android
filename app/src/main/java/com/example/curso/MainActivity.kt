@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.curso.kotlintest.Contador
+import com.example.curso.kotlintest.DirectRecomposition
 import com.example.curso.ui.navigation.graphs.graficoClases
 import com.example.curso.ui.components.NavegacionInferior
 import com.example.curso.ui.navigation.rutes.Graph
@@ -25,7 +27,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CursoTheme {
-                Clases()
+//                DirectRecomposition()
+                Contador()
+//                Clases()
 //                SplitView()
 //                FormularioAgregarGato()
 
