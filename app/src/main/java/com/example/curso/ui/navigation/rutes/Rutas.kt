@@ -42,7 +42,6 @@ sealed class Graph {
 }
 
 
-@Serializable
 sealed class Routes {
     @Serializable
     object Destino1 : Routes()
@@ -50,4 +49,9 @@ sealed class Routes {
     @Serializable
     object Destino2 : Routes()
 
+    @Serializable
+    data class Destino3(
+        val nombre : String?,
+        val edad : Int?
+    ) : Routes()
 }
