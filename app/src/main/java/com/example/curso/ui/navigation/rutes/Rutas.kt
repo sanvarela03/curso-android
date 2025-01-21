@@ -63,8 +63,6 @@ sealed class Rutas(val ruta: String) {
             return this
         }
     }
-
-
 }
 
 sealed class Graph {
