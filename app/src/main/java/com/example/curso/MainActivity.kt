@@ -18,6 +18,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.curso.domain.data.UserRepository
 import com.example.curso.kotlintest.Contador
 import com.example.curso.kotlintest.DirectRecomposition
 import com.example.curso.ui.navigation.graphs.graficoClases
@@ -25,12 +26,13 @@ import com.example.curso.ui.components.NavegacionInferior
 import com.example.curso.ui.navigation.graphs.graficoTest
 import com.example.curso.ui.navigation.rutes.Graph
 import com.example.curso.ui.screens.EfectoSecundarioTest
+import com.example.curso.ui.screens.SaveUserForm
 import com.example.curso.ui.screens.TokenView
 import com.example.curso.ui.theme.CursoTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-// At the top level of your kotlin file:
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "data_store")
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,8 @@ class MainActivity : ComponentActivity() {
 //                DirectRecomposition()
 //                Contador()
 //                Clases()
-                TokenView()
+//                TokenView()
+                SaveUserForm()
 //                EfectoSecundarioTest()
 //                SplitView()
 //                FormularioAgregarGato()

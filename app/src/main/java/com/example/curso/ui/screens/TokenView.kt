@@ -34,7 +34,8 @@ fun TokenView() {
     val dataStore = remember {
         TokenManager(context)
     }
-    val token by dataStore.getAccessToken().collectAsStateWithLifecycle("")
+//    val token by dataStore.getAccessToken().collectAsStateWithLifecycle("")
+    val token = ""
     val coroutineScope = rememberCoroutineScope()
     var newToken by rememberSaveable { mutableStateOf("") }
 
@@ -55,7 +56,7 @@ fun TokenView() {
             )
             Button(onClick = {
                 coroutineScope.launch {
-                    dataStore.saveAccessToken(newToken)
+//                    dataStore.saveAccessToken(newToken)
                 }
             }) {
                 Text("Guardar token")
@@ -70,7 +71,7 @@ fun TokenView() {
                 ),
                 onClick = {
                     coroutineScope.launch {
-                        dataStore.deleteAccessToken()
+//                        dataStore.deleteAccessToken()
                     }
                 },
             ) {
