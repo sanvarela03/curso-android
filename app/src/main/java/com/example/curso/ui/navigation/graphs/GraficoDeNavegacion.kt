@@ -12,6 +12,7 @@ import com.example.curso.ui.navigation.rutes.Rutas
 import com.example.curso.ui.screens.AlineacionEnCaja
 import com.example.curso.ui.screens.AlineacionHorizontal
 import com.example.curso.ui.screens.AlineacionVertical
+import com.example.curso.ui.screens.CatDetail
 import com.example.curso.ui.screens.Contenedor
 import com.example.curso.ui.screens.Contenedores
 import com.example.curso.ui.screens.FormularioAgregarGato
@@ -48,7 +49,10 @@ fun NavGraphBuilder.graficoClases(go: (Any) -> Unit) {
             AlineacionEnCaja()
         }
         composable<Rutas.Clase8> {
-            FormularioAgregarGato()
+            FormularioAgregarGato(go = go)
+        }
+        composable<Rutas.Cat> {
+            CatDetail()
         }
     }
 }

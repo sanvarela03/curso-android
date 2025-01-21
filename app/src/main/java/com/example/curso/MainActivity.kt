@@ -25,11 +25,11 @@ import com.example.curso.ui.components.NavegacionInferior
 import com.example.curso.ui.navigation.graphs.graficoTest
 import com.example.curso.ui.navigation.rutes.Graph
 import com.example.curso.ui.screens.EfectoSecundarioTest
+import com.example.curso.ui.screens.TokenView
 import com.example.curso.ui.theme.CursoTheme
 
 // At the top level of your kotlin file:
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "data_store")
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,8 @@ class MainActivity : ComponentActivity() {
 //                DirectRecomposition()
 //                Contador()
 //                Clases()
-                EfectoSecundarioTest()
+                TokenView()
+//                EfectoSecundarioTest()
 //                SplitView()
 //                FormularioAgregarGato()
 
@@ -55,14 +56,15 @@ fun Clases() {
     val navController = rememberNavController()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-//        bottomBar = { NavegacionInferior() { navController.navigate(it) } }
+        bottomBar = { NavegacionInferior() { navController.navigate(it) } }
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Graph.GraficoTest,
+            startDestination = Graph.GraficoClases,
             modifier = Modifier.padding(innerPadding)
         ) {
-            graficoTest { navController.navigate(it) }
+//            graficoTest { navController.navigate(it) }
+            graficoClases { navController.navigate(it) }
         }
     }
 }

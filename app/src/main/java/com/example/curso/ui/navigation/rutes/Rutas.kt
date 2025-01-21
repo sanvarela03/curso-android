@@ -1,5 +1,7 @@
 package com.example.curso.ui.navigation.rutes
 
+import com.example.curso.ui.screens.Gato
+import com.example.curso.ui.states.CatState
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -32,11 +34,43 @@ sealed class Rutas(val ruta: String) {
 
     @Serializable
     object Destino1 : Rutas("Destino1")
+
+    @Serializable
+    data class Cat(
+        var nombre: String = "",
+        var genero: String = "",
+        var edad: String = "",
+        var peso: String = "",
+        var color: String = "",
+    ) : Rutas("Gatos") {
+        fun toCatState(): CatState {
+            return CatState(
+                nombre = nombre,
+                genero = genero,
+                edad = edad,
+                peso = peso,
+                color = color
+            )
+        }
+
+        fun toParams(gato: Gato): Cat {
+            nombre = gato.nombre
+            genero = gato.genero
+            edad = gato.edad
+            peso = gato.peso
+            color = gato.color
+
+            return this
+        }
+    }
+
+
 }
 
 sealed class Graph {
     @Serializable
     data object GraficoClases : Graph()
+
     @Serializable
     data object GraficoTest : Graph()
 }
@@ -51,7 +85,7 @@ sealed class Routes {
 
     @Serializable
     data class Destino3(
-        val nombre : String?,
-        val edad : Int?
+        val nombre: String?,
+        val edad: Int?
     ) : Routes()
 }
